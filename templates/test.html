@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Support Jeswin ☕</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 50px; }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #qr-container { margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Hello from my website!</h1>
+  <p>If you like my work, consider buying me a tea ☕</p>
+
+  <input type="number" id="amount" placeholder="Enter amount (e.g. 10)" min="1" required>
+  <button onclick="showQR()">Buy Me a Tea</button>
+
+  <div id="qr-container"></div>
+
+  <script>
+    function showQR() {
+      const apiKey = 'f1118b53-0823-4291-a0df-80c41ea237d6'; // Replace with your actual API key
+      const amount = document.getElementById('amount').value;
+
+      if (!amount || isNaN(amount) || parseInt(amount) <= 0) {
+        alert('Please enter a valid amount.');
+        return;
+      }
+
+      const iframe = document.createElement('iframe');
+      iframe.src = `http://localhost:5000/api/qr?key=${apiKey}&amount=${amount}`;
+      iframe.width = "320";
+      iframe.height = "400";
+      iframe.style.border = "none";
+
+      const container = document.getElementById('qr-container');
+      container.innerHTML = '';
+      container.appendChild(iframe);
+    }
+  </script>
+
+</body>
+</html>
