@@ -144,7 +144,7 @@ def api_qr():
     return render_template("index.html", page="api", qr_filename=filename, username=username, amount=amount)
 
 
-
 if __name__ == '__main__':
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+
